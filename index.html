@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <script src="https://p.trellocdn.com/power-up.min.js"></script>
+</head>
+
+<body>
+
+<script>
+window.TrelloPowerUp.initialize({
+
+  'card-buttons': function(t, options) {
+
+    return [{
+      text: 'GENERUJ OFERTĘ',
+      condition: 'edit',
+
+      callback: async function(t) {
+
+        const karta = await t.card('id', 'name');
+
+        const url =
+          'https://script.google.com/macros/s/AKfycby7lPZHy5qy1TxIL_WHauyiO-8Z99zXxge0rUwjs-f_2rRxZesNNqgWQRBZ_TbbbEdIhw/exec' +
+          '?cardId=' + encodeURIComponent(karta.id);
+
+        window.open(url, '_blank');
+
+        return t.alert({
+          message: 'Generowanie oferty uruchomione'
+        });
+      }
+    }];
+  }
+
+});
+</script>
+
+</body>
+</html>
