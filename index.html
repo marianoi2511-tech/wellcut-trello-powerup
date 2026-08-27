@@ -4,9 +4,11 @@
   <meta charset="UTF-8">
   <script src="https://p.trellocdn.com/power-up.min.js"></script>
 </head>
+
 <body>
 
 <script>
+
 window.TrelloPowerUp.initialize({
 
   'card-buttons': function(t, opts) {
@@ -15,9 +17,18 @@ window.TrelloPowerUp.initialize({
       text: 'GENERUJ OFERTĘ',
       condition: 'always',
 
-      callback: function(t) {
+      callback: async function(t) {
+
+        const karta = await t.card('id', 'name');
+
+        const url =
+          'TUTAJ_WKLEJ_ADRES_APPS_SCRIPT' +
+          '?cardId=' + encodeURIComponent(karta.id);
+
+        window.open(url, '_blank');
+
         return t.alert({
-          message: 'PRZYCISK DZIAŁA'
+          message: 'Uruchamiam generowanie oferty'
         });
       }
     }];
@@ -25,6 +36,7 @@ window.TrelloPowerUp.initialize({
   }
 
 });
+
 </script>
 
 </body>
