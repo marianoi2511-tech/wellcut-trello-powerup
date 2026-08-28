@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <script src="https://p.trellocdn.com/power-up.min.js"></script>
 </head>
-
 <body>
 
 <script>
@@ -13,25 +12,53 @@ window.TrelloPowerUp.initialize({
 
   'card-buttons': function(t, opts) {
 
-    return [{
-      text: 'GENERUJ OFERTĘ',
-      condition: 'always',
+    return [
 
-      callback: async function(t) {
+      {
+        text: 'GENERUJ OFERTĘ',
+        condition: 'always',
 
-        const karta = await t.card('id', 'name');
+        callback: async function(t) {
 
-        const url =
-          'https://script.google.com/macros/s/AKfycbwSSi4OnXuwIT-0wKpgiJYqTYHWfD_vB_QiYeSEE6BWNjdBbOFglSEuUMmqKOSiwqE7lw/exec' +
-          '?cardId=' + encodeURIComponent(karta.id);
+          const karta = await t.card('id', 'name');
 
-        window.open(url, '_blank');
+          const url =
+            'https://script.google.com/macros/s/AKfycbwSSi4OnXuwIT-0wKpgiJYqTYHWfD_vB_QiYeSEE6BWNjdBbOFglSEuUMmqKOSiwqE7lw/exec' +
+            '?typ=oferta' +
+            '&cardId=' +
+            encodeURIComponent(karta.id);
 
-        return t.alert({
-          message: 'Uruchamiam generowanie oferty'
-        });
+          window.open(url, '_blank');
+
+          return t.alert({
+            message: 'Uruchamiam generowanie oferty'
+          });
+        }
+      },
+
+      {
+        text: 'SPECYFIKACJA DO FV',
+        condition: 'always',
+
+        callback: async function(t) {
+
+          const karta = await t.card('id', 'name');
+
+          const url =
+            'https://script.google.com/macros/s/AKfycbwSSi4OnXuwIT-0wKpgiJYqTYHWfD_vB_QiYeSEE6BWNjdBbOFglSEuUMmqKOSiwqE7lw/exec' +
+            '?typ=specyfikacja' +
+            '&cardId=' +
+            encodeURIComponent(karta.id);
+
+          window.open(url, '_blank');
+
+          return t.alert({
+            message: 'Tworzę specyfikację do FV'
+          });
+        }
       }
-    }];
+
+    ];
 
   }
 
