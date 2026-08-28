@@ -4,15 +4,20 @@
   <meta charset="UTF-8">
   <script src="https://p.trellocdn.com/power-up.min.js"></script>
 </head>
+
 <body>
 
 <script>
 
 window.TrelloPowerUp.initialize({
 
-  'card-buttons': function(t, opts) {
+  'card-buttons': function(t, options) {
 
     return [
+
+      /******************************************************
+       * OFERTA
+       ******************************************************/
 
       {
         text: 'GENERUJ OFERTĘ',
@@ -20,21 +25,31 @@ window.TrelloPowerUp.initialize({
 
         callback: async function(t) {
 
-          const karta = await t.card('id', 'name');
+          const karta =
+            await t.card('id', 'name');
 
           const url =
-            'https://script.google.com/macros/s/AKfycbwSSi4OnXuwIT-0wKpgiJYqTYHWfD_vB_QiYeSEE6BWNjdBbOFglSEuUMmqKOSiwqE7lw/exec' +
+            'TUTAJ_WKLEJ_ADRES_APPS_SCRIPT' +
             '?typ=oferta' +
             '&cardId=' +
             encodeURIComponent(karta.id);
 
-          window.open(url, '_blank');
+          window.open(
+            url,
+            '_blank'
+          );
 
           return t.alert({
-            message: 'Uruchamiam generowanie oferty'
+            message:
+              'Uruchamiam generowanie oferty'
           });
         }
       },
+
+
+      /******************************************************
+       * SPECYFIKACJA DO FV
+       ******************************************************/
 
       {
         text: 'SPECYFIKACJA DO FV',
@@ -42,18 +57,55 @@ window.TrelloPowerUp.initialize({
 
         callback: async function(t) {
 
-          const karta = await t.card('id', 'name');
+          const karta =
+            await t.card('id', 'name');
 
           const url =
-            'https://script.google.com/macros/s/AKfycbwSSi4OnXuwIT-0wKpgiJYqTYHWfD_vB_QiYeSEE6BWNjdBbOFglSEuUMmqKOSiwqE7lw/exec' +
+            'TUTAJ_WKLEJ_ADRES_APPS_SCRIPT' +
             '?typ=specyfikacja' +
             '&cardId=' +
             encodeURIComponent(karta.id);
 
-          window.open(url, '_blank');
+          window.open(
+            url,
+            '_blank'
+          );
 
           return t.alert({
-            message: 'Tworzę specyfikację do FV'
+            message:
+              'Tworzę specyfikację do FV'
+          });
+        }
+      },
+
+
+      /******************************************************
+       * WZ
+       ******************************************************/
+
+      {
+        text: 'GENERUJ WZ',
+        condition: 'always',
+
+        callback: async function(t) {
+
+          const karta =
+            await t.card('id', 'name');
+
+          const url =
+            'TUTAJ_WKLEJ_ADRES_APPS_SCRIPT' +
+            '?typ=wz' +
+            '&cardId=' +
+            encodeURIComponent(karta.id);
+
+          window.open(
+            url,
+            '_blank'
+          );
+
+          return t.alert({
+            message:
+              'Tworzę dokument WZ'
           });
         }
       }
